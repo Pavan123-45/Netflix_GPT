@@ -3,10 +3,10 @@ import Header from './Header'
 import { checkValidate } from '../utils/validate';
 import {  createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../utils/firebase"
-import { useNavigate } from 'react-router-dom';
 import {updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { userIcon } from '../utils/constants';
 
 const Login = () => {
   const [signInForm, setSignInForm]=useState(true);
@@ -14,13 +14,11 @@ const Login = () => {
   const email=useRef(null);
   const password=useRef(null);
   const fullName=useRef(null);
-  const navigate = useNavigate();
   const dispatch=useDispatch();
   const toggleForm=()=>{
     setSignInForm(!signInForm)
   }
   const formHandle=()=>{
-    // console.log(email.current.value);
     const message=checkValidate(email.current.value,password.current.value)
     setErrorMessage(message)
     if(message) return
@@ -38,7 +36,6 @@ const Login = () => {
           email :email, 
           displayName :displayName, 
         }))
-        navigate("/browse")
        }).catch((error) => {
         setErrorMessage(error.message)
        });
@@ -53,11 +50,7 @@ const Login = () => {
     }
     else {
    signInWithEmailAndPassword(auth, email.current.value,password.current.value)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    console.log(user);
-    navigate("/browse")
-  })
+  .then((userCredential) => {  })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -70,7 +63,7 @@ const Login = () => {
     <div>
       <Header />
       <div className='absolute'>
-      <img src='https://assets.nflxext.com/ffe/siteui/vlv3/c38a2d52-138e-48a3-ab68-36787ece46b3/eeb03fc9-99c6-438e-824d-32917ce55783/IN-en-20240101-popsignuptwoweeks-perspective_alpha_website_small.jpg'
+      <img src= {userIcon}
       alt='background-img' />
       </div>
       <form onSubmit={(e)=> e.preventDefault()} className='w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
