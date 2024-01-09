@@ -6,7 +6,7 @@ import {auth} from "../utils/firebase"
 import {updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { userIcon } from '../utils/constants';
+import { ICON_URL } from '../utils/constants';
 
 const Login = () => {
   const [signInForm, setSignInForm]=useState(true);
@@ -41,9 +41,7 @@ const Login = () => {
        });
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setErrorMessage(errorCode+" - "+errorMessage)
+    setErrorMessage("This account already exists ")
     
   });
 
@@ -62,11 +60,11 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className='absolute'>
-      <img src= {userIcon}
+      <div className='absolute '>
+      <img src= {ICON_URL} className='h-screen object-cover w-screen '
       alt='background-img' />
       </div>
-      <form onSubmit={(e)=> e.preventDefault()} className='w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
+      <form onSubmit={(e)=> e.preventDefault()} className=' w-8/12 md:w-3/12 absolute p-6 md:p-12 bg-black my-28 md:my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
         <h1 className='font-bold text-3xl py-4'>
         { signInForm?"Sign In":"Sign Up"}
         </h1>
