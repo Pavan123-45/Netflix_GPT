@@ -1,6 +1,5 @@
 import Header from './Header'
 import useNowPlayingMovies from '../hooks.js/useNowPlayingMovies'
-// import { useSelector } from 'react-redux';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 import usePopularMovies from '../hooks.js/usePopularMovies';
