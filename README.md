@@ -1,1 +1,1 @@
-hosted link : https://netflixgpt-e5c88.web.app 
+hosted link : https://netfllixgpt-pvn.netlify.app
